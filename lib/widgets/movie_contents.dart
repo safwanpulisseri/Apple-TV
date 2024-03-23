@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WidgetMovieContents extends StatelessWidget {
-  WidgetMovieContents({super.key});
   final List<String> imagePath = [
     'assets/WhatsApp Image 2024-03-22 at 17.01.09_cleanup (1).jpeg',
     'assets/WhatsApp Image 2024-03-22 at 17.01.10_cleanup (1).jpeg',
@@ -10,10 +10,11 @@ class WidgetMovieContents extends StatelessWidget {
     'assets/WhatsApp Image 2024-03-23 at 09.47.39 (2).jpeg',
     'assets/WhatsApp Image 2024-03-23 at 09.47.40 (3).jpeg',
   ];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 130,
+      height: 160, // Adjusted height to accommodate numbers and text
       width: MediaQuery.of(context).size.width,
       child: PageView.builder(
         padEnds: false,
@@ -22,18 +23,51 @@ class WidgetMovieContents extends StatelessWidget {
           viewportFraction: 0.65,
         ),
         itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.only(left: 10),
-            // decoration: BoxDecoration(
-            //     //borderRadius: BorderRadius.circular(10),
-            //     ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                imagePath[index],
-                fit: BoxFit.cover,
+          return Column(
+            children: [
+              Flexible(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      width: 200,
+                      imagePath[index],
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
-            ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 40,
+                  ),
+                  Text(
+                    '${index + 1}',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Name of Movies',
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w500),
+                      ),
+                      Text('Description'),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           );
         },
       ),
