@@ -1,4 +1,5 @@
 import 'package:apple_tv/controller/movie_data.dart';
+import 'package:apple_tv/models/movie.dart';
 import 'package:apple_tv/widgets/lastblackinhome.dart';
 import 'package:apple_tv/widgets/movie_contents.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,21 @@ class _HomeWidgetState extends State<HomeWidget> {
     'assets/WhatsApp Image 2024-03-23 at 09.47.39 (2).jpeg',
     'assets/WhatsApp Image 2024-03-23 at 09.47.40 (3).jpeg',
   ];
+
+  List<Movie> trendingMovies = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchTrendingMovies();
+  }
+
+  Future<void> _fetchTrendingMovies() async {
+    List<Movie> movies = await movieData.getTrendingMovies();
+    setState(() {
+      trendingMovies = movies;
+    });
+  }
 
   final _pageController = PageController();
 
@@ -78,7 +94,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: Column(
           children: [
             SizedBox(
-              height: 500,
+              height: 600,
               child: Stack(
                 children: [
                   PageView(
@@ -87,14 +103,23 @@ class _HomeWidgetState extends State<HomeWidget> {
                     onPageChanged: (int index) {
                       _currentPage.value = index;
                     },
-                    children: imagePath.map((path) {
-                      return Image.asset(
-                        path,
-                        height: 500,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      );
-                    }).toList(),
+                    children: trendingMovies.isNotEmpty
+                        ? trendingMovies.map((movie) {
+                            return Image.network(
+                              movie.moviePoster,
+                              height: 500,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            );
+                          }).toList()
+                        : imagePath.map((path) {
+                            return Image.asset(
+                              path,
+                              height: 500,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            );
+                          }).toList(),
                   ),
                   Positioned(
                     left: 0,
@@ -107,7 +132,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         builder: (context, currentPageValue, _) {
                           return PageViewDotIndicator(
                             currentItem: currentPageValue,
-                            count: imagePath.length,
+                            count: 5,
                             unselectedColor: Colors.grey,
                             selectedColor: Colors.white,
                             size: const Size(8, 8),
