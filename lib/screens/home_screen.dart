@@ -127,7 +127,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     width: 20,
                   ),
                   Text(
-                    'Top Chart: TV Shows ',
+                    'Top Chart: Movies ',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -143,21 +143,66 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
             WidgetMovieContents(
               movie: movieData.getTopRatedMovies(),
-            ), //Trending Movies Showing here
-            SizedBox(
-              height: 40,
             ),
-            WidgetMovieContents(
-                movie: movieData
-                    .getTrendingMovies()), //Top Rated Movies Showing here
             SizedBox(
-              height: 40,
+              height: 50,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'Newest Releases ',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  )
+                ],
+              ),
             ),
-            WidgetMovieContents(
-                movie: movieData
-                    .getUpcomingMovies()), //Now Playing Movies Showing here
+            WidgetMovieContents(movie: movieData.getTrendingMovies()),
             SizedBox(
-              height: 40,
+              height: 50,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'All Kids & Family',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            WidgetMovieContents(movie: movieData.getUpcomingMovies()),
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'Based on Books',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                ],
+              ),
             ),
             WidgetMovieContents(
                 movie: movieData

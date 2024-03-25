@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:apple_tv/models/movie.dart';
 import 'package:apple_tv/screens/movies_details_page.dart';
-import 'package:flutter/widgets.dart';
 
 class WidgetMovieContents extends StatefulWidget {
   final Future<List<Movie>> movie;
@@ -68,7 +66,9 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
                       Expanded(
                         child: Row(
                           children: [
-                            SizedBox(width: 40),
+                            SizedBox(
+                              width: 15,
+                            ),
                             Text(
                               '${index + 1}',
                               style: TextStyle(

@@ -12,6 +12,11 @@ class MoviesDetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         titleSpacing: 0,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back_ios)),
         title: const Row(
           children: [
             SizedBox(
