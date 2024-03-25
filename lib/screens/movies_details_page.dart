@@ -1,10 +1,7 @@
 import 'package:apple_tv/models/movie.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MoviesDetailsPage extends StatelessWidget {
-  // final String imagePath;
   final Movie movie;
   MoviesDetailsPage({required this.movie});
 

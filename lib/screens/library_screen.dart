@@ -49,16 +49,16 @@ class LibraryPage extends StatelessWidget {
             Text(
               'TV  shows or movies you buy from the Store will',
               style: TextStyle(
-                  color: Colors.grey,
-                  //fontSize: 25,
-                  fontWeight: FontWeight.w500),
+                color: Colors.grey,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             Text(
               'appear here.',
               style: TextStyle(
-                  color: Colors.grey,
-                  //  fontSize: 25,
-                  fontWeight: FontWeight.w500),
+                color: Colors.grey,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ),

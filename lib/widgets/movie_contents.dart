@@ -2,7 +2,6 @@ import 'package:apple_tv/controller/movie_data.dart';
 import 'package:apple_tv/models/movie.dart';
 import 'package:apple_tv/screens/movies_details_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class WidgetMovieContents extends StatefulWidget {
   @override
@@ -10,7 +9,6 @@ class WidgetMovieContents extends StatefulWidget {
 }
 
 class _WidgetMovieContentsState extends State<WidgetMovieContents> {
-  // final List<String> imagePath = [
   final MovieData _movieData = MovieData();
 
   List<Movie> _movies = [];
