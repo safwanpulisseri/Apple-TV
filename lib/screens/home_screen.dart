@@ -1,3 +1,4 @@
+import 'package:apple_tv/controller/movie_data.dart';
 import 'package:apple_tv/widgets/movie_contents.dart';
 import 'package:flutter/material.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
@@ -12,6 +13,8 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  MovieData movieData = MovieData();
+
   final List<String> imagePath = [
     'assets/WhatsApp Image 2024-03-22 at 17.01.09_cleanup (1).jpeg',
     'assets/WhatsApp Image 2024-03-22 at 17.01.10_cleanup (1).jpeg',
@@ -138,19 +141,27 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ],
               ),
             ),
-            WidgetMovieContents(), //Trending Movies Showing here
+            WidgetMovieContents(
+              movie: movieData.getTopRatedMovies(),
+            ), //Trending Movies Showing here
             SizedBox(
               height: 40,
             ),
-            WidgetMovieContents(), //Top Rated Movies Showing here
+            WidgetMovieContents(
+                movie: movieData
+                    .getTrendingMovies()), //Top Rated Movies Showing here
             SizedBox(
               height: 40,
             ),
-            WidgetMovieContents(), //Now Playing Movies Showing here
+            WidgetMovieContents(
+                movie: movieData
+                    .getUpcomingMovies()), //Now Playing Movies Showing here
             SizedBox(
               height: 40,
             ),
-            WidgetMovieContents(), //Upcoming Movies Showing here
+            WidgetMovieContents(
+                movie: movieData
+                    .getTopRatedMovies()), //Upcoming Movies Showing here
             SizedBox(
               height: 40,
             ),
