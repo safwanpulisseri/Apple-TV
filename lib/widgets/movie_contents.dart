@@ -1,29 +1,46 @@
+import 'package:apple_tv/controller/movie_data.dart';
+import 'package:apple_tv/models/movie.dart';
 import 'package:apple_tv/screens/movies_details_page.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class WidgetMovieContents extends StatelessWidget {
-  final List<String> imagePath = [
-    'assets/WhatsApp Image 2024-03-22 at 17.01.09_cleanup (1).jpeg',
-    'assets/WhatsApp Image 2024-03-22 at 17.01.10_cleanup (1).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.39 (1) (1).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.40 (1) (1).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.39 (2).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.40 (3).jpeg',
-  ];
+class WidgetMovieContents extends StatefulWidget {
+  @override
+  State<WidgetMovieContents> createState() => _WidgetMovieContentsState();
+}
+
+class _WidgetMovieContentsState extends State<WidgetMovieContents> {
+  // final List<String> imagePath = [
+  final MovieData _movieData = MovieData();
+
+  List<Movie> _movies = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchMovies();
+  }
+
+  Future<void> _fetchMovies() async {
+    List<Movie> movies = await _movieData.getTrendingMovies();
+    setState(() {
+      _movies = movies;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 160, // Adjusted height to accommodate numbers and text
+      height: 260,
       width: MediaQuery.of(context).size.width,
       child: PageView.builder(
         padEnds: false,
-        itemCount: imagePath.length,
+        itemCount: _movies.length,
         controller: PageController(
           viewportFraction: 0.65,
         ),
         itemBuilder: (context, index) {
+          Movie movie = _movies[index];
           return Column(
             children: [
               Flexible(
@@ -32,8 +49,7 @@ class WidgetMovieContents extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            MoviesDetailsPage(imagePath: imagePath[index]),
+                        builder: (context) => MoviesDetailsPage(movie: movie),
                       ),
                     );
                   },
@@ -41,9 +57,10 @@ class WidgetMovieContents extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 10),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        width: 200,
-                        imagePath[index],
+                      child: Image.network(
+                        width: 260,
+                        height: MediaQuery.of(context).size.height,
+                        movie.moviePoster,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -70,11 +87,11 @@ class WidgetMovieContents extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Name of Movies',
+                        movie.movieName,
                         style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.w500),
                       ),
-                      Text('Description'),
+                      Text(movie.releaseDate),
                     ],
                   ),
                 ],

@@ -1,7 +1,5 @@
-import 'package:apple_tv/screens/movies_details_page.dart';
 import 'package:apple_tv/widgets/movie_contents.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -140,15 +138,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ],
               ),
             ),
-            WidgetMovieContents(),
+            WidgetMovieContents(), //Trending Movies Showing here
             SizedBox(
               height: 40,
             ),
-            WidgetMovieContents(),
+            WidgetMovieContents(), //Top Rated Movies Showing here
             SizedBox(
               height: 40,
             ),
-            WidgetMovieContents(),
+            WidgetMovieContents(), //Now Playing Movies Showing here
+            SizedBox(
+              height: 40,
+            ),
+            WidgetMovieContents(), //Upcoming Movies Showing here
             SizedBox(
               height: 40,
             ),

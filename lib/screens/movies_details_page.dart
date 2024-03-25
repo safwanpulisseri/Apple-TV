@@ -1,8 +1,12 @@
+import 'package:apple_tv/models/movie.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MoviesDetailsPage extends StatelessWidget {
-  final String imagePath;
-  MoviesDetailsPage({required this.imagePath});
+  // final String imagePath;
+  final Movie movie;
+  MoviesDetailsPage({required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +40,29 @@ class MoviesDetailsPage extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(
-              imagePath,
+            Image.network(
+              movie.movieBackdrop,
               fit: BoxFit.cover,
             ),
             SizedBox(
-              height: 50,
+              height: 60,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Text(
+                      movie.movieName,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ),
             ),
             ClipRRect(
               borderRadius: BorderRadius.circular(5),
@@ -82,7 +100,16 @@ class MoviesDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Container(
+                width: 350,
+                child: Text(
+                  movie.movieOverview,
+                  style: TextStyle(color: Colors.white),
+                ))
           ],
         ),
       ),
