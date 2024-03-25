@@ -27,6 +27,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
         selectedItemColor: Colors.blue.shade700,
+        backgroundColor: Colors.white,
         currentIndex: _selectedIndex,
         onTap: (value) {
           setState(() {

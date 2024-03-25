@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:apple_tv/screens/movies_details_page.dart';
+
 import 'package:flutter/material.dart';
 
 class WidgetMovieContents extends StatelessWidget {
@@ -26,14 +27,25 @@ class WidgetMovieContents extends StatelessWidget {
           return Column(
             children: [
               Flexible(
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      width: 200,
-                      imagePath[index],
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            MoviesDetailsPage(imagePath: imagePath[index]),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        width: 200,
+                        imagePath[index],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
