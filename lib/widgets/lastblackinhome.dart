@@ -12,7 +12,7 @@ class LastBlackinHomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/Screenshot_2024-03-23_at_5.59.56_PM-removebg-preview.png',
+            'assets/miami_pass.png',
             height: 80,
             width: 200,
           ),

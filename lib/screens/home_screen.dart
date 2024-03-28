@@ -18,12 +18,12 @@ class _HomeWidgetState extends State<HomeWidget> {
   MovieData movieData = MovieData();
 
   final List<String> imagePath = [
-    'assets/WhatsApp Image 2024-03-22 at 17.01.09_cleanup (1).jpeg',
-    'assets/WhatsApp Image 2024-03-22 at 17.01.10_cleanup (1).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.39 (1) (1).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.40 (1) (1).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.39 (2).jpeg',
-    'assets/WhatsApp Image 2024-03-23 at 09.47.40 (3).jpeg',
+    'assets/main_photo.jpeg',
+    'assets/dick_turpin.jpeg',
+    'assets/messi_america.jpeg',
+    'assets/girls_state.jpeg',
+    'assets/slow_horses.jpeg',
+    'assets/palm_royale.jpeg',
   ];
 
   List<Movie> trendingMovies = [];

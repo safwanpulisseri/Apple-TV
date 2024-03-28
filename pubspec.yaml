@@ -63,13 +63,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/WhatsApp Image 2024-03-22 at 17.01.09_cleanup (1).jpeg
-    - assets/WhatsApp Image 2024-03-22 at 17.01.10_cleanup (1).jpeg
-    - assets/WhatsApp Image 2024-03-23 at 09.47.39 (1) (1).jpeg
-    - assets/WhatsApp Image 2024-03-23 at 09.47.39 (2).jpeg
-    - assets/WhatsApp Image 2024-03-23 at 09.47.40 (1) (1).jpeg
-    - assets/WhatsApp Image 2024-03-23 at 09.47.40 (3).jpeg
-    - assets/Screenshot_2024-03-23_at_5.59.56_PM-removebg-preview.png
+    - assets/main_photo.jpeg
+    - assets/dick_turpin.jpeg
+    - assets/messi_america.jpeg
+    - assets/girls_state.jpeg
+    - assets/slow_horses.jpeg
+    - assets/palm_royale.jpeg
+    - assets/miami_pass.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

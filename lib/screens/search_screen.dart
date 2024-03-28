@@ -3,7 +3,6 @@ import 'package:apple_tv/controller/search_data.dart';
 import 'package:apple_tv/models/movie.dart';
 import 'package:apple_tv/widgets/search_result.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 TextEditingController searchController = TextEditingController();
 
