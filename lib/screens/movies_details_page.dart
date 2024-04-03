@@ -16,7 +16,7 @@ class MoviesDetailsPage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back_ios)),
+            icon: const Icon(Icons.arrow_back_ios)),
         title: const Row(
           children: [
             SizedBox(
@@ -31,7 +31,7 @@ class MoviesDetailsPage extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
+        actions: const [
           CircleAvatar(
             radius: 17,
             child: Text('S', style: TextStyle(color: Colors.white)),
@@ -57,7 +57,7 @@ class MoviesDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       movie.movieName,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 35,
                           fontWeight: FontWeight.w400),
@@ -73,7 +73,7 @@ class MoviesDetailsPage extends StatelessWidget {
                 width: 200,
                 height: 40,
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'PLAY',
                   style: TextStyle(
                     color: Colors.black,
@@ -83,7 +83,7 @@ class MoviesDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ClipRRect(
@@ -93,7 +93,7 @@ class MoviesDetailsPage extends StatelessWidget {
                 width: 200,
                 height: 40,
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   '+ Add to Up Next',
                   style: TextStyle(
                     color: Colors.black,
@@ -103,14 +103,14 @@ class MoviesDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Container(
                 width: 350,
                 child: Text(
                   movie.movieOverview,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ))
           ],
         ),

@@ -8,6 +8,9 @@ class LastBlackinHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.black,
+      height: 300,
+      width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -16,17 +19,17 @@ class LastBlackinHomeScreen extends StatelessWidget {
             height: 80,
             width: 200,
           ),
-          Text(
+          const Text(
             'Every match. Every club. No blackouts. Only on',
             style: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
           ),
-          Text(
+          const Text(
             'Apple TV.',
             style: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           ClipRRect(
@@ -36,7 +39,7 @@ class LastBlackinHomeScreen extends StatelessWidget {
               width: 200,
               height: 40,
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Subscribe',
                 style: TextStyle(
                   color: Colors.black,
@@ -48,9 +51,6 @@ class LastBlackinHomeScreen extends StatelessWidget {
           )
         ],
       ),
-      color: Colors.black,
-      height: 300,
-      width: double.infinity,
     );
   }
 }

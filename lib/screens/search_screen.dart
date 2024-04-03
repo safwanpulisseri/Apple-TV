@@ -52,7 +52,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ],
         ),
-        actions: [
+        actions: const [
           CircleAvatar(
             radius: 17,
             child: Text('S', style: TextStyle(color: Colors.white)),
@@ -83,7 +83,7 @@ class _SearchPageState extends State<SearchPage> {
                           Icons.search,
                           color: Colors.grey[600],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Expanded(

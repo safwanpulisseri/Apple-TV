@@ -68,24 +68,24 @@ class _HomeWidgetState extends State<HomeWidget> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.music_off,
               color: Colors.white,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.play_circle_outline_sharp,
               color: Colors.white,
             ),
           ),
-          CircleAvatar(
+          const CircleAvatar(
             radius: 17,
-            child: Text('S', style: TextStyle(color: Colors.white)),
             backgroundColor: Colors.grey,
+            child: Text('S', style: TextStyle(color: Colors.white)),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           )
         ],
@@ -145,7 +145,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
               child: Row(
                 children: [
@@ -170,7 +170,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             WidgetMovieContents(
               movie: movieData.getTopRatedMovies(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
               child: Row(
                 children: [
@@ -193,7 +193,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
             WidgetMovieContents(movie: movieData.getTrendingMovies()),
-            SizedBox(
+            const SizedBox(
               height: 50,
               child: Row(
                 children: [
@@ -212,7 +212,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
             WidgetMovieContents(movie: movieData.getUpcomingMovies()),
-            SizedBox(
+            const SizedBox(
               height: 50,
               child: Row(
                 children: [
@@ -231,10 +231,10 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
             WidgetMovieContents(movie: movieData.getTopRatedMovies()),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            LastBlackinHomeScreen()
+            const LastBlackinHomeScreen()
           ],
         ),
       ),

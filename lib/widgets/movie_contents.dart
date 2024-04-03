@@ -17,11 +17,11 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
       future: widget.movie,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text('No data available'));
+          return const Center(child: Text('No data available'));
         } else {
           List<Movie> movies = snapshot.data!;
           return SizedBox(
@@ -66,7 +66,7 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
                       Expanded(
                         child: Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             Text(
@@ -77,14 +77,14 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
                                 color: Colors.grey.shade600,
                               ),
                             ),
-                            SizedBox(width: 20),
+                            const SizedBox(width: 20),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     movie.movieName,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 17,
                                         fontWeight: FontWeight.w500),
                                     overflow: TextOverflow.fade,
