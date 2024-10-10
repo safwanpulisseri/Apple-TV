@@ -4,6 +4,7 @@ class Movie {
   final String moviePoster;
   final String movieBackdrop;
   final String releaseDate;
+  // ignore: prefer_typing_uninitialized_variables
   final id;
 
   Movie({

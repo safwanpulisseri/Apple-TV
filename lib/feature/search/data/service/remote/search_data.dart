@@ -1,13 +1,16 @@
 import 'dart:developer';
-import 'package:apple_tv/models/movie.dart';
-import 'package:apple_tv/serivces.dart';
+import 'package:apple_tv/feature/search/data/service/remote/serivces.dart';
+import 'package:flutter/foundation.dart';
+import '../../../../home/data/model/movie.dart';
 
 class SearchingData {
   ApiCall apiCall = ApiCall();
 
   Future<List<Movie>> _search(String value) async {
     final result = await apiCall.search(value);
-    print(result);
+     if (kDebugMode) {
+       print(result);
+     }
     if (result.isNotEmpty) {
       List<Movie> movieDetails = result.map((dynamic item) {
         String moviePoster = apiCall.imageLink +

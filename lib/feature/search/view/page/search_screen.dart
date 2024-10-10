@@ -1,8 +1,10 @@
-import 'package:apple_tv/controller/movie_data.dart';
-import 'package:apple_tv/controller/search_data.dart';
-import 'package:apple_tv/models/movie.dart';
-import 'package:apple_tv/widgets/search_result.dart';
+import 'package:apple_tv/feature/home/data/service/remote/movie_data.dart';
+import 'package:apple_tv/feature/search/data/service/remote/search_data.dart';
+import 'package:apple_tv/feature/search/view/widget/search_result.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../../home/data/model/movie.dart';
 
 TextEditingController searchController = TextEditingController();
 
@@ -19,14 +21,12 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     searchResults = MovieData().getTrendingMovies();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     searchController.text;
   }
@@ -55,8 +55,8 @@ class _SearchPageState extends State<SearchPage> {
         actions: const [
           CircleAvatar(
             radius: 17,
-            child: Text('S', style: TextStyle(color: Colors.white)),
             backgroundColor: Colors.grey,
+            child: Text('S', style: TextStyle(color: Colors.white)),
           ),
           SizedBox(
             width: 20,
@@ -117,16 +117,16 @@ class _SearchPageState extends State<SearchPage> {
             future: searchResults,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return  const Flexible(child: Center(child: CircularProgressIndicator.adaptive()));
               } else if (snapshot.hasError) {
                 return Center(
                   child: Text('Error: ${snapshot.error}'),
                 );
               } else if (!snapshot.hasData || (snapshot.data as List).isEmpty) {
-                return const Center(
-                  child: Text('No search results'),
+                return const Flexible(
+                  child:  Center(
+                    child: Text('No search results'),
+                  ),
                 );
               } else {
                 List<Movie> searchResults = snapshot.data as List<Movie>;
@@ -155,11 +155,15 @@ class _SearchPageState extends State<SearchPage> {
     try {
       List<Movie> results = await SearchingData().getSearchingMovies(value);
       setState(() {
-        print('function started...');
+        if (kDebugMode) {
+          print('function started...');
+        }
         searchResults = Future.value(results);
       });
     } catch (e) {
-      print('Error searching movies: $e');
+      if (kDebugMode) {
+        print('Error searching movies: $e');
+      }
     }
   }
 }

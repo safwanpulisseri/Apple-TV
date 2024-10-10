@@ -1,20 +1,24 @@
-import 'package:apple_tv/controller/movie_data.dart';
-import 'package:apple_tv/models/movie.dart';
-import 'package:apple_tv/widgets/lastblackinhome.dart';
-import 'package:apple_tv/widgets/movie_contents.dart';
-import 'package:flutter/material.dart';
-import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import '../../data/model/movie.dart';
+import '../../data/service/remote/movie_data.dart';
+import '../widget/bottom_widget_home.dart';
+import '../widget/dot_indicator_widget.dart';
+import '../widget/movie_contents.dart';
+
+
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
   });
 
   @override
-  State<HomeWidget> createState() => _HomeWidgetState();
+  State<HomePage> createState() => _HomeWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _HomeWidgetState extends State<HomePage> {
+    int _currentIndex = 0;
   MovieData movieData = MovieData();
 
   final List<String> imagePath = [
@@ -65,30 +69,31 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.music_off,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.play_circle_outline_sharp,
-              color: Colors.white,
-            ),
-          ),
-          const CircleAvatar(
-            radius: 17,
-            backgroundColor: Colors.grey,
-            child: Text('S', style: TextStyle(color: Colors.white)),
-          ),
-          const SizedBox(
-            width: 20,
-          )
-        ],
+       actions: [
+  IconButton(
+    onPressed: () {},
+    icon: const Icon(
+      CupertinoIcons.music_note, 
+      color: Colors.white,
+    ),
+  ),
+   IconButton(
+    onPressed: () {},
+    icon: const Icon(
+      CupertinoIcons.play_circle, 
+      color: Colors.white,
+    ),
+  ),
+  const CircleAvatar(
+    radius: 17,
+    backgroundColor: Colors.grey,
+    child: Text('S', style: TextStyle(color: Colors.white)),
+  ),
+  const SizedBox(
+    width: 20,
+  )
+]
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -97,30 +102,52 @@ class _HomeWidgetState extends State<HomeWidget> {
               height: 600,
               child: Stack(
                 children: [
-                  PageView(
-                    controller: _pageController,
-                    scrollDirection: Axis.horizontal,
-                    onPageChanged: (int index) {
-                      _currentPage.value = index;
-                    },
-                    children: trendingMovies.isNotEmpty
-                        ? trendingMovies.map((movie) {
-                            return Image.network(
-                              movie.moviePoster,
-                              height: 500,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            );
-                          }).toList()
-                        : imagePath.map((path) {
-                            return Image.asset(
-                              path,
-                              height: 500,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            );
-                          }).toList(),
+                 PageView(
+  controller: _pageController,
+  scrollDirection: Axis.horizontal,
+  onPageChanged: (int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    _currentPage.value = index;
+  },
+  // Show loading or default images until trendingMovies is fetched
+  children: trendingMovies.isNotEmpty
+      ? trendingMovies.map((movie) {
+          return Image.network(
+            movie.moviePoster,
+            height: 500,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            // Add a placeholder while the image is loading
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(
+                    // value: loadingProgress.expectedTotalBytes != null
+                    //     ? loadingProgress.cumulativeBytesLoaded /
+                    //         loadingProgress.expectedTotalBytes!
+                    //     : null,
                   ),
+                );
+              }
+            },
+          );
+        }).toList()
+      : imagePath.map((path) {
+          // Default images shown while data is loading
+          return Image.asset(
+            path,
+            height: 500,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          );
+        }).toList(),
+),
+
                   Positioned(
                     left: 0,
                     right: 0,
@@ -130,14 +157,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: ValueListenableBuilder<int>(
                         valueListenable: _currentPage,
                         builder: (context, currentPageValue, _) {
-                          return PageViewDotIndicator(
-                            currentItem: currentPageValue,
-                            count: 5,
-                            unselectedColor: Colors.grey,
-                            selectedColor: Colors.white,
-                            size: const Size(8, 8),
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                          );
+                         
+                         return DotsIndicator(
+          dotsCount: 5,
+          position: _currentIndex,
+          decorator: DotsDecorator(
+            baseColor: Colors.grey,
+            activeColor:  Colors.white,
+            size: const Size(8.0, 8.0),
+            activeSize: const Size(20.0, 8.0),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            spacing: const EdgeInsets.symmetric(horizontal: 4.0),
+          ),);
                         },
                       ),
                     ),
@@ -234,7 +266,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             const SizedBox(
               height: 40,
             ),
-            const LastBlackinHomeScreen()
+            const BottomWidgetHome()
           ],
         ),
       ),

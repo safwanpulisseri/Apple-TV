@@ -1,5 +1,5 @@
-import 'package:apple_tv/models/movie.dart';
 import 'package:flutter/material.dart';
+import '../../../home/data/model/movie.dart';
 
 class SearchResultsTile extends StatelessWidget {
   final Movie movie;

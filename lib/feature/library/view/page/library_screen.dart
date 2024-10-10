@@ -24,13 +24,13 @@ class LibraryPage extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          const CircleAvatar(
+        actions: const [
+          CircleAvatar(
             radius: 17,
-            child: Text('S', style: TextStyle(color: Colors.white)),
             backgroundColor: Colors.grey,
+            child: Text('S', style: TextStyle(color: Colors.white)),
           ),
-          const SizedBox(
+          SizedBox(
             width: 20,
           )
         ],

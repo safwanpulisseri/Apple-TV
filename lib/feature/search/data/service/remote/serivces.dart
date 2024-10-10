@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class ApiCall {
@@ -19,11 +20,15 @@ class ApiCall {
         final results = json['results'] as List<dynamic>;
         return results;
       } else {
-        print('status code: ${response.statusCode}');
+        if (kDebugMode) {
+          print('status code: ${response.statusCode}');
+        }
       }
     } catch (e) {
       log('failed when trying to fetch data');
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     return [];
   }

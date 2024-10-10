@@ -1,6 +1,7 @@
 import 'dart:developer';
-import 'package:apple_tv/models/movie.dart';
-import 'package:apple_tv/serivces.dart';
+import 'package:apple_tv/feature/search/data/service/remote/serivces.dart';
+
+import '../../model/movie.dart';
 
 class MovieData {
   ApiCall apiCall = ApiCall();

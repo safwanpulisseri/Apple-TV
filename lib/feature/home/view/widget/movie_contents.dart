@@ -1,6 +1,7 @@
+import 'package:apple_tv/core/util/png_asset.dart';
 import 'package:flutter/material.dart';
-import 'package:apple_tv/models/movie.dart';
-import 'package:apple_tv/screens/movies_details_page.dart';
+import 'package:apple_tv/feature/home/view/page/movies_details_page.dart';
+import '../../data/model/movie.dart';
 
 class WidgetMovieContents extends StatefulWidget {
   final Future<List<Movie>> movie;
@@ -17,12 +18,18 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
       future: widget.movie,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          // Show loading indicator while data is being fetched
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
         } else if (snapshot.hasError) {
+          // Show error message if something goes wrong
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No data available'));
+          // Show a fallback placeholder if there's no data available
+          return const Center(child: Text('No movies available'));
         } else {
+          // Data has been loaded successfully
           List<Movie> movies = snapshot.data!;
           return SizedBox(
             height: 225,
@@ -39,11 +46,13 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          // Navigate to the movie details page when tapped
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  MoviesDetailsPage(movie: movie),
+                              builder: (context) => MoviesDetailsPage(
+                                movie: movie,
+                              ),
                             ),
                           );
                         },
@@ -58,6 +67,26 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
                               width: 260,
                               height: MediaQuery.of(context).size.height,
                               fit: BoxFit.cover,
+                              // Use a placeholder while the movie backdrop is loading
+                              loadingBuilder: (context, child, loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return Center(
+                                  child: CircularProgressIndicator.adaptive(
+                                    value: loadingProgress.expectedTotalBytes !=
+                                            null
+                                        ? loadingProgress.cumulativeBytesLoaded /
+                                            loadingProgress.expectedTotalBytes!
+                                        : null,
+                                  ),
+                                );
+                              },
+                              // Display a placeholder image in case of an error
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(
+                               AppPngPath.placeHolder, // Path to a local placeholder image
+                                  fit: BoxFit.cover,
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -66,9 +95,7 @@ class _WidgetMovieContentsState extends State<WidgetMovieContents> {
                       Expanded(
                         child: Row(
                           children: [
-                            const SizedBox(
-                              width: 15,
-                            ),
+                            const SizedBox(width: 15),
                             Text(
                               '${index + 1}',
                               style: TextStyle(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LastBlackinHomeScreen extends StatelessWidget {
-  const LastBlackinHomeScreen({
+class BottomWidgetHome extends StatelessWidget {
+  const BottomWidgetHome({
     super.key,
   });
 

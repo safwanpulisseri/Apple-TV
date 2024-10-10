@@ -1,9 +1,9 @@
-import 'package:apple_tv/models/movie.dart';
 import 'package:flutter/material.dart';
+import '../../data/model/movie.dart';
 
 class MoviesDetailsPage extends StatelessWidget {
   final Movie movie;
-  MoviesDetailsPage({required this.movie});
+  const MoviesDetailsPage({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +34,8 @@ class MoviesDetailsPage extends StatelessWidget {
         actions: const [
           CircleAvatar(
             radius: 17,
-            child: Text('S', style: TextStyle(color: Colors.white)),
             backgroundColor: Colors.grey,
+            child: Text('S', style: TextStyle(color: Colors.white)),
           ),
           SizedBox(
             width: 20,
@@ -106,7 +106,7 @@ class MoviesDetailsPage extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            Container(
+            SizedBox(
                 width: 350,
                 child: Text(
                   movie.movieOverview,
